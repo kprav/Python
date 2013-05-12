@@ -1,0 +1,3 @@
+Implemented BFS, DFS, UCS & A* algorithms to automate pacman navigation through a maze to find food & reach the goal.
+Implemented the Enhanced Minimax Algorithm and the Alpha-Beta Pruning Algorithm to automate and help pacman decide the game play strategy in order to escape the ghosts and reach the goal.
+
