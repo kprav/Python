@@ -1,0 +1,57 @@
+1. Evaluation Function
+~~~~~~~~~~~~~~~~~~~~~~
+The evaluation function that is implemented takes into account the whether the ghosts is present
+in any of the possible next coordinates of the pacman. If yes, then it returns a very high 
+negative integer so that that move is not taken. Otherwise it returns the score of the successor 
+state. When tried twenty times for the testClassic maze it won all the twenty times.
+
+
+2. Minimax Algorithm
+~~~~~~~~~~~~~~~~~~~~
+The getaction() method calls the max value function for the pacman. Obtain the utility value and 
+return the correspoding legal action.
+	
+	2.1 MaxValue()
+	~~~~~~~~~~~~
+	Get the legal moves for the pacman and remove stop from it. Calculate the number of ghosts.
+	Initially set the value of v to be minus infinity. Check if the depth is zero and if yes,
+	then return the utility value. If not, get the successors of the pacman for each of its
+	legal moves. Call the min value function for all these successors. Then find the highest of 
+	all these min values and return that to the pacman. 
+
+
+	2.2 MinValue()
+	~~~~~~~~~~~~~~
+	Check if the depth of the tree is zero and if yes, then return the utility value of the game
+	state. If the current ghost is not the last ghost, then get its legal moves. For each of its
+	legal moves, get its successor. If it has no successor, then return the utility value of the
+	game state. Otherwise, for each successor call the minvalue function again and return the 
+	least of all these min values
+	
+	if the current ghost is the last ghost, then decrement the depth. Now get the legalactions
+	of the ghost and also find the successors for each of them. If there are no successors, then
+	return the utility value of the game state. Otherwise, call the max value function for each
+	of these successors and return the least out all these values. If the depth is not zero, then 
+	max value function functions as usual. Otherwise, the max value function returns the utility
+	value of the game state passed.
+
+3. Alpha-Beta Pruning Algorithm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The getaction() method calls the max value function for the pacman. Obtain the utility value and return 
+the correspoding legal action. Here initialize the alpha value to be minus infinity and the beta value 
+to be plus infinity.
+
+	2.1 MaxValue()
+	~~~~~~~~~~~~~~
+	This is similar to the maxvalue function of the minimax agent. But if the utility value of v
+	that is returned from the minvalue function is greater than or equal to beta, then we prune
+	the tree and return v there. Also, we update alpha to be greater of v and the current value
+	of alpha
+
+
+	2.2 MinValue()
+	~~~~~~~~~~~~~~
+	This is similar to the maxvalue function of the minimax agent. But if the utility value of v
+	that is returne from either the minvalue function or the maxvalue function is lesser than alpha,
+	we prune the tree and return v there. Also we update beta if to be the lesser of v and the 
+	current value of beta
