@@ -1,0 +1,26 @@
+This is a project done as a part of Artificial Intelligence course at USC during Summer 2009.
+
+  - Implemented Breadth First Search, Depth First Search, Uniform Cost Search and A* algorithms to efficiently navigate pacman through a maze.
+
+1. Files Submitted:
+	search.py
+	codes.txt
+	DOCUMENT.pdf
+	README
+
+2. Files Modified:
+	search.py
+	
+3. Executing the code
+	Type the following in aludra to run the code:-
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	python pacman.py -l tinyMaze -p SearchAgent
+	python pacman.py -l mediumMaze -p SearchAgent
+	python pacman.py -l bigMaze -z .5 -p SearchAgent
+	python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs
+	python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5
+	python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
+	python pacman.py -l mediumDottedMaze –p StayEastSearchAgent	
+	python pacman.py -l mediumScaryMaze -p StayWestSearchAgent
+	python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+	

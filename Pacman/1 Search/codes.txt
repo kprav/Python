@@ -1,0 +1,62 @@
+Depth First Search
+~~~~~~~~~~~~~~~~~~~~~~~~
+The open queue is implemented as a stack while the closed queue is implemented as
+queue. The stack implementation of open queue ensures that the search happens depth
+wise. First, check if the start node itself is the goal node and if it is then, the pacman has
+reached the goal and hence nothing has to be returned.
+
+If the start node is not the goal node, then get all the successors of the start node and 
+push them into the open queue. At the same time, keep a dictionary that keeps track of
+the parent of each node that is being pushed into the open queue. In this case, the 
+parent is the start node.
+
+Run a loop till the openqueue is not empty. In each iteration of the loop pop one element
+from the open queue and push it into the closed queue. Now, get the successors of this 
+node. For each successor, check if it is not present in the closed queue and the openqueue. 
+If true, then push the successor into the open queue and update the dictionary of parents.
+
+Everytime a node is popped from the open queue, check if it is the goal node. If it is then,
+push this node into the stack that is maintained to keep track of the route. Now, backtrack
+to the start using the dictionary of parents. At this point, we have backtracked and found
+the path to the start node from the goal node. We now start popping from the stack and
+append the direction to a list of moves. Finally, this list of moves is returned which contains
+the path from the start node to the end node and the pacman navigates using this.
+
+Breadth First Search
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The implementation of breadth first search is similar to depth first search except that the 
+implementation of open queue is a queue rather than a stack. The queue implementation
+of the open queue ensures that the search happens breadth wise.
+
+Uniform Cost Search
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+This search technique requires to take into account the cost to decide priority. In this case, 
+the openqueue is implemented as a priority queue. The handling of paths once the goal
+node is reached is the same as in the previous two cases. The difference lies in pushing 
+the node into the open queue. We also use a dictionary to keep track of the cost from the
+start node to every node expanded.
+
+Once a node has been popped from the openqueue, then get its successor. For each successor,
+check if it is not in the open queue and the closed queue. If true, then find the cost from the
+start node upto its parent using the cost dictionary and add the cost to the current node from 
+its parent to it. Push the current node into the open queue using this cost as priority. Now,
+update the cost and parent dictionaries with the cost and parent of the current node.
+
+If the current node is present in the open queue, then find the cost for the current node as usual.
+Also, retrieve from the dictionary, the old cost for this node when it was associated with a 
+different node. On comparison, if the old cost is greater than the current cost, then delete the old
+entry from the open queue and push the new entry into it. Also, update the cost dictionary and
+the parent dictionary
+
+Checking for negative path costs has also been done. if the current node is already in the closed
+queue, then find the cost of the current node from the start node including the negative path cost 
+from its parent and then compare it with its previous cost. Use the dictionaries for this. If the
+negative path cost is cheaper, delete the old entries for this node from both the cost and the parent
+dictionaries. Then update the cost dictionary and the parent dictionary with the new values.
+
+A* Search
+~~~~~~~~~~~~~
+This search technique is similar to the Uniform Cost Search, but we also take into account the
+estimated manhatten heuristic straight line distance from the current node to the goal node.
+All comparisons are done after adding the manhatten heuristic distance to the cost from
+the start node to the current node.
